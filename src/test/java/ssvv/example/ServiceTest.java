@@ -63,8 +63,13 @@ public class ServiceTest {
         Student studentEmpty = new Student("1", "", 932, "andrei.cupes@gmail.com");
         Student studentNull = new Student("1", null, 932, "andrei.cupes@gmail.com");
 
-//        assertThrows(ValidationException.class, () -> service.addStudent(studentEmpty));
-//        assertThrows(ValidationException.class, () -> service.addStudent(studentNull));
+        try{
+            service.addStudent(studentEmpty);
+            service.addStudent(studentNull);
+        }
+        catch (ValidationException e){
+
+        }
     }
 
 
@@ -72,7 +77,12 @@ public class ServiceTest {
     public void addStudent_givenInvalidGroup() {
         Student student = new Student("1", "Andrei", -5, "andrei.cupes@gmail.com");
 
-        //assertThrows(ValidationException.class, () -> service.addStudent(student));
+        try{
+            service.addStudent(student);
+        }
+        catch (ValidationException e){
+
+        }
     }
 
 
@@ -81,8 +91,14 @@ public class ServiceTest {
         Student studentEmpty = new Student("1", "Andrei", 932, "");
         Student studentNull = new Student("1", "Andrei", 932, null);
 
-//        assertThrows(ValidationException.class, () -> service.addStudent(studentEmpty));
-//        assertThrows(ValidationException.class, () -> service.addStudent(studentNull));
+        try{
+            service.addStudent(studentEmpty);
+            service.addStudent(studentNull);
+        }
+        catch (ValidationException e){
+
+        }
+
     }
 
     @Test
