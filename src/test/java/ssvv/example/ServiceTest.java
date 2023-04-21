@@ -3,6 +3,7 @@ package ssvv.example;
 import ssvv.example.domain.Student;
 import org.junit.Before;
 import org.junit.Test;
+import ssvv.example.domain.Tema;
 import ssvv.example.repository.*;
 
 import ssvv.example.service.Service;
@@ -122,5 +123,33 @@ public class ServiceTest {
 
         assertEquals(null, result);
         service.deleteStudent("3");
+    }
+
+
+    // Add Assignment Tests
+
+    @Test
+    public void addAssignment_givenValidAssignment() {
+        Tema tema= new Tema("1", "tema1", 2, 1);
+
+        service.addTema(tema);
+        Tema addedAssignment = service.findTema("1");
+
+        assertEquals(addedAssignment.getID(), "1");
+
+        service.deleteTema("1");
+    }
+
+    @Test
+    public void addAssignment_givenInvalidId() {
+        Tema tema1 = new Tema("", "tema1", 2, 1);
+        Tema tema2 = new Tema(null, "tema1", 2, 1);
+        try{
+            service.addTema(tema1);
+            service.addTema(tema2);
+        }
+        catch (ValidationException e){
+
+        }
     }
 }
