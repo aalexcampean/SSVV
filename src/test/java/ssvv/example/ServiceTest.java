@@ -49,11 +49,10 @@ public class ServiceTest {
     public void addStudent_givenInvalidId() {
         Student student = new Student("", "Andrei Cupes", 932, "andrei.cupes@gmail.com");
         Student student1 = new Student(null, "Andrei Cupes", 932, "andrei.cupes@gmail.com");
-        try{
+        try {
             service.addStudent(student);
             service.addStudent(student1);
-        }
-        catch (ValidationException e){
+        } catch (ValidationException e) {
 
         }
     }
@@ -64,11 +63,10 @@ public class ServiceTest {
         Student studentEmpty = new Student("1", "", 932, "andrei.cupes@gmail.com");
         Student studentNull = new Student("1", null, 932, "andrei.cupes@gmail.com");
 
-        try{
+        try {
             service.addStudent(studentEmpty);
             service.addStudent(studentNull);
-        }
-        catch (ValidationException e){
+        } catch (ValidationException e) {
 
         }
     }
@@ -78,10 +76,9 @@ public class ServiceTest {
     public void addStudent_givenInvalidGroup() {
         Student student = new Student("1", "Andrei", -5, "andrei.cupes@gmail.com");
 
-        try{
+        try {
             service.addStudent(student);
-        }
-        catch (ValidationException e){
+        } catch (ValidationException e) {
 
         }
     }
@@ -92,11 +89,10 @@ public class ServiceTest {
         Student studentEmpty = new Student("1", "Andrei", 932, "");
         Student studentNull = new Student("1", "Andrei", 932, null);
 
-        try{
+        try {
             service.addStudent(studentEmpty);
             service.addStudent(studentNull);
-        }
-        catch (ValidationException e){
+        } catch (ValidationException e) {
 
         }
 
@@ -130,7 +126,7 @@ public class ServiceTest {
 
     @Test
     public void addAssignment_givenValidAssignment() {
-        Tema tema= new Tema("1", "tema1", 2, 1);
+        Tema tema = new Tema("1", "tema1", 2, 1);
 
         service.addTema(tema);
         Tema addedAssignment = service.findTema("1");
@@ -144,12 +140,49 @@ public class ServiceTest {
     public void addAssignment_givenInvalidId() {
         Tema tema1 = new Tema("", "tema1", 2, 1);
         Tema tema2 = new Tema(null, "tema1", 2, 1);
-        try{
+        try {
             service.addTema(tema1);
             service.addTema(tema2);
-        }
-        catch (ValidationException e){
+        } catch (ValidationException e) {
 
         }
     }
+
+    @Test
+    public void addAssignment_givenInvalidDescription() {
+        Tema tema1 = new Tema("1", "", 2, 1);
+
+        try {
+            service.addTema(tema1);
+        } catch (ValidationException e) {
+
+        }
+    }
+
+    @Test
+    public void addAssignment_givenInvalidDeadline() {
+        Tema tema1 = new Tema("1", "tema1", 0, 1);
+        Tema tema2 = new Tema("1", "tema1", 17, 1);
+        try {
+            service.addTema(tema1);
+            service.addTema(tema2);
+        } catch (ValidationException e) {
+
+        }
+    }
+
+
+    @Test
+    public void addAssignment_givenInvalidPrimire() {
+        Tema tema1 = new Tema("1", "tema1", 2, 0);
+        Tema tema2 = new Tema("1", "tema1", 2, 15);
+        try {
+            service.addTema(tema1);
+            service.addTema(tema2);
+        } catch (ValidationException e) {
+
+        }
+    }
+
+
 }
