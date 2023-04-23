@@ -173,7 +173,7 @@ public class ServiceTest {
 
 
     @Test
-    public void addAssignment_givenInvalidPrimire() {
+    public void addAssignment_givenInvalidReceivedDate() {
         Tema tema1 = new Tema("1", "tema1", 2, 0);
         Tema tema2 = new Tema("1", "tema1", 2, 15);
         try {
