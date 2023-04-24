@@ -16,6 +16,8 @@ import ssvv.example.validation.ValidationException;
 
 import java.time.LocalDate;
 
+import static org.junit.Assert.assertEquals;
+
 public class BigBangIntegrationTest {
 
     private Service service;
@@ -77,9 +79,23 @@ public class BigBangIntegrationTest {
 
     @Test
     public void integrationTest(){
-        addStudent_givenInvalidId();
-        addAssignment_givenInvalidDeadline();
-        addGrade_givenInvalidGrade();
-    }
+        service.addStudent(new Student("100", "Andrei Cupes", 932, "andrei.cupes@gmail.com"));
+        service.addTema(new Tema("100", "tema1", 3, 2));
 
+        service.addNota(new Nota("100", "100", "100", 10, LocalDate.of(2018, 10, 26)), "Good Job!");
+
+        Student addedStudent = service.findStudent("100");
+        assertEquals(addedStudent.getID(), "100");
+
+        Tema addedAssignment = service.findTema("100");
+        assertEquals(addedAssignment.getID(), "100");
+
+        Nota addedGrade = service.findNota("100");
+        assertEquals(addedGrade.getID(), "100");
+
+
+        service.deleteStudent("100");
+        service.deleteTema("100");
+        service.deleteNota("100");
+    }
 }
