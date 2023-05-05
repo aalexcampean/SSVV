@@ -2,6 +2,8 @@ package ssvv.example;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 import ssvv.example.domain.Nota;
 import ssvv.example.domain.Student;
 import ssvv.example.domain.Tema;
@@ -81,7 +83,6 @@ public class BigBangIntegrationTest {
     public void integrationTest(){
         service.addStudent(new Student("100", "Andrei Cupes", 932, "andrei.cupes@gmail.com"));
         service.addTema(new Tema("100", "tema1", 3, 2));
-
         service.addNota(new Nota("100", "100", "100", 10, LocalDate.of(2018, 10, 26)), "Good Job!");
 
         Student addedStudent = service.findStudent("100");
@@ -93,9 +94,9 @@ public class BigBangIntegrationTest {
         Nota addedGrade = service.findNota("100");
         assertEquals(addedGrade.getID(), "100");
 
-
         service.deleteStudent("100");
         service.deleteTema("100");
         service.deleteNota("100");
     }
+
 }
